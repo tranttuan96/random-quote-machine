@@ -1,0 +1,87 @@
+$breakpoints:(
+    'extra-large': 1200px,
+    'large' : 992px,
+    'medium' : 768px,
+    'small' : 576px,
+);
+
+@mixin responsive($screen) {
+  @if(map-has-key($breakpoints,$screen)){
+      $value:map-get($breakpoints,$screen);
+      @media screen and (max-width:$value){
+          @content;
+      }
+  }
+}
+
+.randomQuote {
+  height: 100vh;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  #quote-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    width: 550px;
+    padding: 40px 50px;
+    border-radius: 3px;
+    .quote-text {
+      font-weight: 500;
+      font-size: 1.5em;
+      text-align: center;
+      line-height: 1.35;
+      i {
+        font-size: 0.8em;
+        margin-right: 0.4em;
+      }
+    }
+    #author {
+      padding-top: 20px;
+      font-size: 1em;
+      text-align: right;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      #tweet-quote {
+        padding-top: 8px;
+        height: 38px;
+        width: 40px;
+        color: #fff;
+        text-align: center;
+        border-radius: 3px;
+        opacity: 1;
+        transition: all .2;
+        &:hover {
+            opacity: .9;
+        }
+      }
+      #new-quote {
+        height: 38px;
+        border: none;
+        border-radius: 3px;
+        color: #fff;
+        outline: none;
+        font-size: 1em;
+        padding: 6px 18px 8px 18px;
+        cursor: pointer;
+        transition: all .2;
+        &:hover {
+            opacity: .9;
+        }
+      }
+    }
+  }
+  @include responsive(medium) {
+    #quote-box {
+      width: 450px;
+      .quote-text {
+        font-size: 1.2em;
+      }
+    }
+  }
+}
